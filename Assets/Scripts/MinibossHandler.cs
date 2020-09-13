@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7a7794c22bd64fe9c8e09dd936f89ffe2b2b1b202fbfeac70e584490e9b24d45
-size 594
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MinibossHandler : MonoBehaviour
+{
+    public int health = 2;
+    public void OnExplosion()
+    {
+        health--;
+        if (health <= 0) Destroy(gameObject);
+    }
+    public void OnExplosion(int damage)
+    {
+        health = health - damage;
+        if (health <= 0) Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "KillZone")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+}

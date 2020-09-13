@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3e62e3d4502933513864071dfbfbd85214c8c879b25df2536ce984e0cfc08621
-size 698
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Shield_Behaviour : MonoBehaviour
+{
+    public float effect;
+    public int resistance = 3;
+
+
+    private void FixedUpdate()
+    {
+        if (effect > 0f && resistance> 0)
+        {
+            effect -= (Time.deltaTime) * 1f;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            effect = 0;
+            resistance = 3;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "KillZone")
+        {
+            Destroy(collision.gameObject);
+            resistance--;
+        }
+    }
+}

@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ff5a6b4ad37931303da11ceebc641fcbec29ab00d48a2f74d1d428e36e676388
-size 239
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DeadZone : MonoBehaviour
+{
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+     Destroy(collision.gameObject);
+    }
+}
